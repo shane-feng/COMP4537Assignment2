@@ -163,10 +163,10 @@ const addQuestion = (questionData) => {
 			console.log('value', element.value);
 			if (element.value == '') {
 				element.className = 'errorBorder';
-				element.value = 'enter description';
+				element.placeholder = 'enter description';
 				error = false;
 			} else {
-				element.className = '';
+				element.className = 'answerText';
 				error = true;
 			}
 		});
