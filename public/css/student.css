@@ -1,0 +1,52 @@
+#backButton {
+    width: 100px;
+    height: 50px;
+}
+
+.submitButton {
+    display: none;
+}
+
+.submitButtonDisplay {
+    display: block;
+    width: 100px;
+    height: 50px;
+    float: left;
+}
+
+.questionHeader {
+    display: block;
+    color: rgb(170, 15, 15);
+    font-weight: bold;
+}
+
+.textArea {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 10px;
+    margin: 5px 0px;
+    width: 300px;
+    min-height: 24px;
+    background-color: rgb(231, 230, 230);
+    border-radius: 5px;
+    white-space: pre-wrap; /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+.correctAnswer {
+    border: 5px solid green;
+    border-radius: 5px;
+}
+
+.wrongAnswer {
+    border: 5px solid red;
+    border-radius: 5px;
+}
+
+.reservedWords {
+    color: red;
+    font-weight: bold;
+}

@@ -1,0 +1,23 @@
+.container {
+	margin: 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+.landingButtons {
+	height: 180px;
+	font-size: 120px;
+	text-align: center;
+	border: 1px solid black;
+	border-radius: 5px;
+	text-decoration: none;
+	background-color: rgb(180, 82, 175);
+	color: white;
+	vertical-align: middle;
+	padding: 20px;
+}
+
+.landingButtons:hover {
+	background-color: cadetblue;
+	font-size: 160px;
+}

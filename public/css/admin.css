@@ -1,0 +1,38 @@
+#backButton {
+	width: 100px;
+	height: 50px;
+	float: left;
+}
+
+.qLabel {
+	display: block;
+	color: darkred;
+	font-weight: bold;
+}
+
+#questionText {
+	width: 325px;
+	height: 50px;
+}
+
+.answerContainer {
+	margin: 10px 0;
+}
+
+.answerText {
+	width: 300px;
+}
+
+#addButton {
+	background-color: cadetblue;
+	color: white;
+}
+
+.saveButtons {
+	background-color: dodgerblue;
+	color: white;
+}
+
+.errorBorder {
+	border: 2px solid red;
+}
