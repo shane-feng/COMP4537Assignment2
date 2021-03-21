@@ -16,7 +16,7 @@ const questionContainer = document.getElementById('questionContainer');
 const addBtn = document.getElementById('addButton');
 
 const questionsLoaded = [];
-let questionNo = 1;
+let questionNo = 0;
 
 const xhr = new XMLHttpRequest();
 

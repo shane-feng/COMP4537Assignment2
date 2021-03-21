@@ -83,7 +83,10 @@ app.put('/questions', (req, res) => {
 	const { id, description, answers, answer } = req.body;
 	const updateQuestionQuery = `UPDATE Questions SET description="${description}", answer=${answer} WHERE id=${id}`;
 	con.query(updateQuestionQuery, (error, results) => {
-		if (error) return res.send(error);
+		if (error) {
+			console.log(error);
+			return res.send(error);
+		}
 		console.log('UPDATE QUESTION SUCCESS');
 
 		answers.forEach((ans) => {
@@ -91,6 +94,7 @@ app.put('/questions', (req, res) => {
 			const updateAnswerQuery = `UPDATE UserAnswers SET description="${ans.description}" WHERE answer=${ans.answer} AND question_id=${id}`;
 			con.query(updateAnswerQuery, (error, results) => {
 				if (error) {
+					console.log(error);
 					return res.send(error);
 				}
 				console.log('UPDATE ANSWER SUCCESS');
