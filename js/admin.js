@@ -166,7 +166,7 @@ const addQuestion = (questionData) => {
 				element.value = 'enter description';
 				error = false;
 			} else {
-				element.className = 'answerText';
+				element.className = '';
 				error = true;
 			}
 		});
