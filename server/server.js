@@ -1,22 +1,22 @@
 const express = require('express');
 const mysql = require('mysql');
 
-// const con = mysql.createConnection({
-//     host: process.env.DBHOST,
-// 	user: process.env.DBUSER,
-// 	password: process.env.DBPASSWORD,
-// 	database: process.env.DBDATABASE,
-// 	port: process.env.DBPORT,
-// })
+const con = mysql.createConnection({
+	host: process.env.DBHOST,
+	user: process.env.DBUSER,
+	password: process.env.DBPASSWORD,
+	database: process.env.DBDATABASE,
+	port: process.env.DBPORT,
+});
 
-const connectObj = {
-	host: 'localhost',
-	user: 'root',
-	password: 'rrzz44gg',
-	database: 'testdb',
-};
+// const connectObj = {
+// 	host: 'localhost',
+// 	user: 'root',
+// 	password: 'rrzz44gg',
+// 	database: 'testdb',
+// };
 
-const con = mysql.createConnection(connectObj);
+// const con = mysql.createConnection(connectObj);
 
 con.connect((error) => {
 	if (error) throw error;
