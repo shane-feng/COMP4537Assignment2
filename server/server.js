@@ -46,30 +46,31 @@ app.get('/questions', async (req, res) => {
 			resolve(JSON.parse(JSON.stringify(results)));
 		});
 	});
+
 	res.status(200).send({ questions, answers });
 });
 
 // post question
-app.post('/questions', (req, res) => {
+app.post('/questions', async (req, res) => {
 	const { id, description, answers, answer } = req.body;
 	const postQuestionQuery = `INSERT INTO Questions(id, description, answer) VALUES(${id}, "${description}", ${answer})`;
 	con.query(postQuestionQuery, (error, results) => {
 		if (error) return res.send(error);
 		console.log('POST QUESTION SUCCESS');
-	});
 
-	answers.forEach((answer) => {
-		console.log('ANSWERS', answer);
-		const postAnswerQuery = `INSERT INTO UserAnswers(answer, description, question_id) VALUES(${answer.answer}, "${answer.description}", ${answer.question_id})`;
-		con.query(postAnswerQuery, (error, results) => {
-			if (error) {
-				console.log('ERROR');
-				return res.send(error);
-			}
-			console.log('POST ANSWER SUCCESS');
+		await answers.forEach((answer) => {
+			console.log('ANSWERS', answer);
+			const postAnswerQuery = `INSERT INTO UserAnswers(answer, description, question_id) VALUES(${answer.answer}, "${answer.description}", ${answer.question_id})`;
+			con.query(postAnswerQuery, (error, results) => {
+				if (error) {
+					console.log('ERROR');
+					return res.send(error);
+				}
+				console.log('POST ANSWER SUCCESS');
+			});
 		});
+		res.status(200).send('POST TO DB SUCCESSFUL');
 	});
-	res.status(200).send('POST TO DB SUCCESSFUL');
 });
 
 // update question
@@ -80,19 +81,19 @@ app.put('/questions', (req, res) => {
 	con.query(updateQuestionQuery, (error, results) => {
 		if (error) return res.send(error);
 		console.log('UPDATE QUESTION SUCCESS');
-	});
 
-	answers.forEach((ans) => {
-		console.log('ANSWERS', ans);
-		const updateAnswerQuery = `UPDATE UserAnswers SET description="${ans.description}" WHERE answer=${ans.answer} AND question_id=${id}`;
-		con.query(updateAnswerQuery, (error, results) => {
-			if (error) {
-				return res.send(error);
-			}
-			console.log('UPDATE ANSWER SUCCESS');
+		answers.forEach((ans) => {
+			console.log('ANSWERS', ans);
+			const updateAnswerQuery = `UPDATE UserAnswers SET description="${ans.description}" WHERE answer=${ans.answer} AND question_id=${id}`;
+			con.query(updateAnswerQuery, (error, results) => {
+				if (error) {
+					return res.send(error);
+				}
+				console.log('UPDATE ANSWER SUCCESS');
+			});
 		});
+		res.status(200).send('UPDATE TO DB SUCCESSFUL');
 	});
-	res.status(200).send('UPDATE TO DB SUCCESSFUL');
 });
 
 app.listen(PORT, () => {
