@@ -51,18 +51,22 @@ app.get('/questions', async (req, res) => {
 });
 
 // post question
-app.post('/questions', async (req, res) => {
+app.post('/questions', (req, res) => {
 	const { id, description, answers, answer } = req.body;
 	const postQuestionQuery = `INSERT INTO Questions(id, description, answer) VALUES(${id}, "${description}", ${answer})`;
 	con.query(postQuestionQuery, (error, results) => {
-		if (error) return res.send(error);
+		if (error) {
+			console.log(error);
+			return res.send(error);
+		}
 		console.log('POST QUESTION SUCCESS');
 
-		await answers.forEach((answer) => {
+		answers.forEach((answer) => {
 			console.log('ANSWERS', answer);
 			const postAnswerQuery = `INSERT INTO UserAnswers(answer, description, question_id) VALUES(${answer.answer}, "${answer.description}", ${answer.question_id})`;
 			con.query(postAnswerQuery, (error, results) => {
 				if (error) {
+					console.log(error);
 					console.log('ERROR');
 					return res.send(error);
 				}
