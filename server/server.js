@@ -53,22 +53,22 @@ app.get('/questions', async (req, res) => {
 // post question
 app.post('/questions', (req, res) => {
 	const { id, description, answers, answer } = req.body;
-	const postQuestionQuery = `INSERT INTO Questions(id, description, answer) VALUES(${id}, "${description}", ${answer})`;
+	const postQuestionQuery = `INSERT INTO Questions(id, description, answer) VALUES(${id}, '${description}', ${answer})`;
 	con.query(postQuestionQuery, (error, results) => {
 		if (error) {
 			console.log(error);
-			return res.send(error);
+			return res.status(500).send(error);
 		}
 		console.log('POST QUESTION SUCCESS');
 
 		answers.forEach((answer) => {
 			console.log('ANSWERS', answer);
-			const postAnswerQuery = `INSERT INTO UserAnswers(answer, description, question_id) VALUES(${answer.answer}, "${answer.description}", ${answer.question_id})`;
+			const postAnswerQuery = `INSERT INTO UserAnswers(answer, description, question_id) VALUES(${answer.answer}, '${answer.description}', ${answer.question_id})`;
 			con.query(postAnswerQuery, (error, results) => {
 				if (error) {
 					console.log(error);
 					console.log('ERROR');
-					return res.send(error);
+					return res.status(500).send(error);
 				}
 				console.log('POST ANSWER SUCCESS');
 			});
@@ -81,7 +81,7 @@ app.post('/questions', (req, res) => {
 app.put('/questions', (req, res) => {
 	console.log('QUESTIONS', req.body);
 	const { id, description, answers, answer } = req.body;
-	const updateQuestionQuery = `UPDATE Questions SET description="${description}", answer=${answer} WHERE id=${id}`;
+	const updateQuestionQuery = `UPDATE Questions SET description='${description}', answer=${answer} WHERE id=${id}`;
 	con.query(updateQuestionQuery, (error, results) => {
 		if (error) {
 			console.log(error);
@@ -91,7 +91,7 @@ app.put('/questions', (req, res) => {
 
 		answers.forEach((ans) => {
 			console.log('ANSWERS', ans);
-			const updateAnswerQuery = `UPDATE UserAnswers SET description="${ans.description}" WHERE answer=${ans.answer} AND question_id=${id}`;
+			const updateAnswerQuery = `UPDATE UserAnswers SET description='${ans.description}' WHERE answer=${ans.answer} AND question_id=${id}`;
 			con.query(updateAnswerQuery, (error, results) => {
 				if (error) {
 					console.log(error);
