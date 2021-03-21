@@ -37,7 +37,7 @@ const getQuestions = (callback) => {
 			callback(questionsArray);
 		}
 	};
-	xhr.open('GET', 'http://127.0.0.1:3000/questions', true);
+	xhr.open('GET', 'https://comp-4537-assignment-2-bnmd5.ondigitalocean.app/questions', true);
 	xhr.send();
 };
 

@@ -42,7 +42,7 @@ const getQuestions = (callback) => {
 			callback(questionsArray);
 		}
 	};
-	xhr.open('GET', 'http://127.0.0.1:3000/questions', true);
+	xhr.open('GET', 'https://comp-4537-assignment-2-bnmd5.ondigitalocean.app/questions', true);
 	xhr.send();
 };
 
@@ -58,7 +58,7 @@ getQuestions((questions) => {
 const postQuestion = (question) => {
 	console.log('POST');
 	const questionsString = JSON.stringify(question);
-	xhr.open('POST', 'http://127.0.0.1:3000/questions', true);
+	xhr.open('POST', 'https://comp-4537-assignment-2-bnmd5.ondigitalocean.app/questions', true);
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onreadystatechange = function () {
 		if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
@@ -70,7 +70,7 @@ const postQuestion = (question) => {
 
 const updateQuestion = (question) => {
 	const questionsString = JSON.stringify(question);
-	xhr.open('PUT', 'http://127.0.0.1:3000/questions', true);
+	xhr.open('PUT', 'https://comp-4537-assignment-2-bnmd5.ondigitalocean.app/questions', true);
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onreadystatechange = function () {
 		if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
