@@ -69,7 +69,7 @@ app.post('/questions', (req, res) => {
 			console.log('POST ANSWER SUCCESS');
 		});
 	});
-	res.send('POST TO DB SUCCESSFUL');
+	res.status(200).send('POST TO DB SUCCESSFUL');
 });
 
 // update question
@@ -92,7 +92,7 @@ app.put('/questions', (req, res) => {
 			console.log('UPDATE ANSWER SUCCESS');
 		});
 	});
-	res.send('UPDATE TO DB SUCCESSFUL');
+	res.status(200).send('UPDATE TO DB SUCCESSFUL');
 });
 
 app.listen(PORT, () => {
